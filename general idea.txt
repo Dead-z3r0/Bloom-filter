@@ -1,0 +1,5 @@
+Since this is a space efficient probabilistic data structure to check if the given MAYBE present in a given set or not. 
+Now this MAYBE refers to the fact that it can give False positive, i.e inspite of that element not being a part of the set, it might tell that the given element/username is already present/taken.
+
+It's still used in inspite of this False positive cause if it says that the element is not present, then it definately isn't in the given set/database.
+This saves a lot of time since it reduces the no of lookups and is much faster that the linear search (O(n)) or even Binary search (O(log(n))).
