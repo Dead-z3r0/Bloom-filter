@@ -3,6 +3,7 @@
 
 
 using namespace std;
+using namespace chrono;
 
 class bloom_filter{
     private:
@@ -47,14 +48,45 @@ class bloom_filter{
 };
 
 void solve(){
+    int size_bft,hash_count;
+    cout<<" Please enter the size of bit vector of bloom filter : ";
+    cin>>size_bft;
+    cout<<" Please enter the number of hash functions : ";
+    cin>>hash_count;
+    bloom_filter bf(size_bft,hash_count);
+    int query;
+    cout<<" Please enter the number of queries : ";
+    cin>>query;
+    while(query--){
+        string type,inpt;
+        cout<<"insert or check : ";
+        cin>>type;
+        // whether to add or check the string in the bloom filter
+        if(type=="insert"){
+            cout<<" Please enter the string to insert : ";
+            cin>>inpt;
+            bf.add(inpt);
+        }
+        else if(type=="check"){
+            cout<<" Please enter the string to check : ";
+            cin>>inpt;
+            if(bf.taken(inpt)){
+                cout<<" The string is either PRESENT or FALSE POSITIVE in the bloom filter"<<endl;
+            }
+            else{
+                cout<<" The string is DEF NOT PRESENT in the bloom filter"<<endl;
+            }
 
+        }
+        else{
+            cout<<" Invalid query type, enter either 'insert' or 'check'"<<endl;
+            query++; // to repeat the query if invalid type is entered
+        }
+    }
     return;
 }
 
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
     auto start1 = high_resolution_clock::now();
     solve();
     auto stop1 = high_resolution_clock::now();
